@@ -4,7 +4,9 @@ import com.google.common.hash.Hashing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import test.domain.Account;
+import test.domain.RedirectStatistics;
 import test.domain.UrlMapping;
+import test.repository.RedirectStatisticsRepository;
 import test.repository.UrlMappingRepository;
 
 import java.nio.charset.StandardCharsets;
@@ -14,17 +16,20 @@ import java.util.Optional;
 public class ShortUrlService {
 
     @Autowired private UrlMappingRepository urlMappingRepository;
+    @Autowired private RedirectStatisticsRepository redirectStatisticsRepository;
 
-    public Optional<String> getFullUrlFromShortUrl(String shortUrl)  {
+    public Optional<String> getFullUrlFromShortUrl(String shortUrl) {
         UrlMapping urlMapping = urlMappingRepository.findDistinctFirstByShortUrl(shortUrl);
         return Optional.ofNullable(urlMapping.getFullUrl());
     }
 
-    public String shortenFullUrl(String fullUrl)  {
+    public String shortenFullUrl(String fullUrl) {
         return Hashing.murmur3_32().hashString(fullUrl, StandardCharsets.UTF_8).toString();
     }
 
-    public void saveUrlMapping(String shortUrl, String fullUrl, String accountId)   {
-        urlMappingRepository.save(new UrlMapping(fullUrl, shortUrl, new Account(accountId)));
+    public void saveUrlMapping(String shortUrl, String fullUrl, String accountId) {
+        UrlMapping urlMapping = new UrlMapping(fullUrl, shortUrl, new Account(accountId));
+        urlMappingRepository.save(urlMapping);
+        redirectStatisticsRepository.save(new RedirectStatistics(fullUrl, urlMapping, 0L));
     }
 }

@@ -2,10 +2,12 @@ package test.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import test.domain.RedirectStatistics;
 import test.repository.RedirectStatisticsRepository;
 
-import java.util.Collections;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class StatisticsService {
@@ -18,7 +20,9 @@ public class StatisticsService {
     }
 
     public Map<String, Long> getStatisticsForAccount(String accountId) {
-        redirectStatisticsRepository.getRedirectStatisticsByAccount(accountId);
-        return Collections.emptyMap();
+        List<RedirectStatistics> statistics = redirectStatisticsRepository.getRedirectStatisticsByAccount(accountId);
+        return statistics
+                .stream()
+                .collect(Collectors.toMap(RedirectStatistics::getFullUrl, RedirectStatistics::getRedirectCount));
     }
 }
