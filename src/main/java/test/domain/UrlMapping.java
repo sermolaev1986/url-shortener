@@ -6,8 +6,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "url_mapping")
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode
 @Getter
 @Setter
@@ -22,4 +22,5 @@ public class UrlMapping {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "account_id")
     private Account account;
+
 }
