@@ -16,12 +16,8 @@ public interface RedirectStatisticsRepository extends Repository<RedirectStatist
     @Modifying
     void incrementRedirectCount(@Param("fullUrl") String fullUrl);
 
-    RedirectStatistics findDistinctFirstByFullUrl(String fullUrl);
-
     @Query("FROM RedirectStatistics rs WHERE rs.urlMapping.account.id = :accountId")
     List<RedirectStatistics> getRedirectStatisticsByAccount(@Param("accountId") String accountId);
-
-    List<RedirectStatistics> findAll();
 
     RedirectStatistics save(RedirectStatistics statistics);
 }

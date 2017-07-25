@@ -15,8 +15,10 @@ import java.util.Optional;
 @Service
 public class ShortUrlService {
 
-    @Autowired private UrlMappingRepository urlMappingRepository;
-    @Autowired private RedirectStatisticsRepository redirectStatisticsRepository;
+    @Autowired
+    private UrlMappingRepository urlMappingRepository;
+    @Autowired
+    private RedirectStatisticsRepository redirectStatisticsRepository;
 
     public Optional<String> getFullUrlFromShortUrl(String shortUrl) {
         UrlMapping urlMapping = urlMappingRepository.findDistinctFirstByShortUrl(shortUrl);
