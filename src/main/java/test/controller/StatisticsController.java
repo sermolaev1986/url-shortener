@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 import test.dto.StatisticsResponseDto;
 import test.service.StatisticsService;
 
+/**
+ * REST controller which exposes functionality to retrieve redirect statistics.
+ */
 @RestController
 @RequestMapping("/api/v1/statistic")
 public class StatisticsController {

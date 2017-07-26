@@ -5,6 +5,9 @@ import org.springframework.stereotype.Service;
 import java.security.SecureRandom;
 import java.util.Random;
 
+/**
+ * Service to generate passwords.
+ */
 @Service
 public class PasswordGenerationService {
 
@@ -12,6 +15,10 @@ public class PasswordGenerationService {
 
     private char[] possibleCharacters = ("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789").toCharArray();
 
+    /**
+     * Randomly generates password.
+     * @return password
+     */
     public String generatePassword() {
         Random random = new SecureRandom();
         char[] result = new char[PASSWORD_LENGTH];

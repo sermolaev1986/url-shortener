@@ -15,6 +15,9 @@ import test.service.AccountService;
 import java.io.IOException;
 import java.util.Locale;
 
+/**
+ * REST controller which exposes functionality to register new accounts.
+ */
 @RestController
 @RequestMapping("/api/v1/account")
 public class AccountController {

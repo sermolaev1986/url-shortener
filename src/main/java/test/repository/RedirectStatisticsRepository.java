@@ -9,6 +9,9 @@ import test.domain.RedirectStatistics;
 import javax.transaction.Transactional;
 import java.util.List;
 
+/**
+ * Access layer for {@link RedirectStatistics} entity.
+ */
 @Transactional
 public interface RedirectStatisticsRepository extends Repository<RedirectStatistics, String> {
 

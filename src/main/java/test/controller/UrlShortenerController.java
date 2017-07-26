@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Optional;
 
+/**
+ * REST controller which exposes functionality to register short urls and follow them.
+ */
 @RestController
 @RequestMapping("/")
 public class UrlShortenerController {

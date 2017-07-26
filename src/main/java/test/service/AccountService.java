@@ -13,6 +13,9 @@ import org.springframework.stereotype.Service;
 import test.domain.Account;
 import test.repository.AccountRepository;
 
+/**
+ * Service layer for account related functionality.
+ */
 @Service
 public class AccountService implements UserDetailsService {
 

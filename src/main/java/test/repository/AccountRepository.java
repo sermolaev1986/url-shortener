@@ -5,6 +5,9 @@ import test.domain.Account;
 
 import javax.transaction.Transactional;
 
+/**
+ * Access layer for {@link Account} entity.
+ */
 @Transactional
 public interface AccountRepository extends Repository<Account, String> {
     boolean exists(String id);
